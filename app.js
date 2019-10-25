@@ -50,13 +50,15 @@ function updateQuestionNum() {
 function beginQuiz() {
   // when user hits start button, resetStats is called and quiz is rendered
   $('#start').on('submit', (e) => {
-  generateQuestion();
+  renderQuestion();
   })
 }
 
 function renderQuestion() {
-  let question = STORE.questions[STORE.currentQuestion];
-
+  let question = STORE.allQuestions[STORE.currentQuestion];
+  for (let i = 0; i < STORE.questions.options.length; i++) {
+    
+  }
   //
 }
 

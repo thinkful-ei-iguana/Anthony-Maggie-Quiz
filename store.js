@@ -2,7 +2,7 @@
 
 
 const STORE = {
-  questions: [
+  allQuestions: [
     {
       question: 
         'How many Superbowls have the Colts won?',
