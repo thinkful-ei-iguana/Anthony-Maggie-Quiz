@@ -28,6 +28,12 @@ function renderQuiz() {
 // resets score and question # counters
 function resetStats() {
   // will make sure that score and question # counters are empty at the start of the quiz
+  $('#start').on('submit', (e) => 
+  STORE.score = 0;
+  STORE.currentQuestion = 0;
+  renderQuiz();
+  console.log("render stats is working")
+  )
 }
 
 // updates the score counter each time a question is answered correctly
@@ -43,6 +49,13 @@ function updateQuestionNum() {
 // allows user to start the quiz
 function beginQuiz() {
   // when user hits start button, resetStats is called and quiz is rendered
+  $('#start').on('submit', (e) => {
+  generateQuestion();
+  })
+}
+
+function renderQuestion() {
+
 }
 
 // user submits an answer (not -- on.('click') --)
