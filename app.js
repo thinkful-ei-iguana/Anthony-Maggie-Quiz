@@ -55,7 +55,9 @@ function beginQuiz() {
 }
 
 function renderQuestion() {
+  let question = STORE.questions[STORE.currentQuestion];
 
+  //
 }
 
 // user submits an answer (not -- on.('click') --)
