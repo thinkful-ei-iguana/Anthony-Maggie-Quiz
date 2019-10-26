@@ -1,27 +1,9 @@
 'use strict';
 
-// const questionStorage = [
-//   {
-//     question: 'Who is the Colts offical owner?',
-//     answers: [ 'Mark Cuban', 'Jeff Bezos', 'Tim Cook' ],
-//     correctAnswer: 'Jim Irsay'
-//   },
-//   {
-//     question: 'What are the Colts offical team colors?',
-//     answers: [ 'Light blue & Yellow', 'Red & Silver', 'Blue & Silver' ],
-//     correctAnswer: 'Blue & White'
-//   },
-//   {
-//     question: 'What is the Colts mascot name?',
-//     answers: [ 'Horsey', 'Skippy', 'Rider' ],
-//     correctAnswer: 'Blue'
-//   }
-// ];
-
-
 // Render!
 function renderQuiz() {
   // html elements go here
+
 }
 
 
@@ -49,16 +31,16 @@ function updateQuestionNum() {
 // allows user to start the quiz
 function beginQuiz() {
   // when user hits start button, resetStats is called and quiz is rendered
-  $('#start').on('submit', (e) => {
+  $('#start').on('click', (e) => {
   renderQuestion();
   })
 }
 
 function renderQuestion() {
   let question = STORE.allQuestions[STORE.currentQuestion];
-  for (let i = 0; i < STORE.questions.options.length; i++) {
-    
-  }
+  updateQuestionNum();
+  updateScore();
+  
   //
 }
 
