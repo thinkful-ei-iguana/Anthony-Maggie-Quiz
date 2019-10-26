@@ -63,6 +63,11 @@ main {
 	padding-bottom: 50px;
 }
 
+ul {
+	list-style-type: none;
+}
+
+
 /* End quiz */
 
 /* Begin quiz buttons */
@@ -114,7 +119,7 @@ main {
 	#quiz {
 		text-align: center;
 		padding: 200px 200px;
-		color: darkblue;
+		color: lightblue;
 	}
 
 	.heading {
