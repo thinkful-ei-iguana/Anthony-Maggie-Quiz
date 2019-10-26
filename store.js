@@ -81,7 +81,7 @@ const STORE = {
         'Blue', 
         'Horsey', 
         'Rider',
-        'Skippy 
+        'Skippy' 
       ],
       correctAns: 'Blue'
     }
@@ -89,7 +89,7 @@ const STORE = {
 
   score: 0,
 
-  currentQuestion: 0
+  currentQuestion: 1
 };
 
 
