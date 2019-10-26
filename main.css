@@ -1,6 +1,7 @@
 /* Begin Imports */
 
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 /* End Imports */
 
@@ -43,6 +44,22 @@ main {
 
 /* End main */
 
+/* Begin quiz data */
+
+.quizData {
+}
+
+.score {
+	display: inline;
+}
+
+.question-number {
+	text-align: right;
+	display: inline;
+}
+
+/* End quiz data */
+
 /* Begin quiz */
 
 #quiz {
@@ -65,8 +82,8 @@ main {
 
 ul {
 	list-style-type: none;
+	padding: 0;
 }
-
 
 /* End quiz */
 
@@ -87,7 +104,52 @@ ul {
 	transition: all 0.5s ease-out;
 }
 
+.button-row .submitAns {
+	border: 0;
+	padding: 0;
+	background: transparent;
+	color: #fff;
+	transition: all 0.5s ease-out;
+	font-family: 'Indie Flower', cursive;
+	font-size: calc(10px + 2vmin);
+}
+
 /* End quiz buttons */
+
+/* Begin quiz questions */
+
+.question-content h2 {
+	margin-bottom: 50px;
+	font-size: calc(10px + 2vmin);
+	color: #fff;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+}
+
+/* Begin quiz questions */
+
+/* Begin quiz answers */
+
+.question-content {
+	text-align: left;
+	margin: 50px;
+}
+
+.question-content .inputs {
+	float: left;
+	margin-top: 10px;
+}
+
+.questionNames {
+	margin-top: 10px;
+	text-align: left;
+}
+
+.inputs {
+	margin: 10px;
+}
+
+/* End quiz anwsers */
 
 /* Begin tablet */
 @media only screen and (min-width: 769px) {
@@ -118,7 +180,7 @@ ul {
 
 	#quiz {
 		text-align: center;
-		padding: 200px 200px;
+		padding: 100px 100px;
 		color: lightblue;
 	}
 
