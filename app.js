@@ -10,7 +10,7 @@ function main() {
   // resets score and question # counters
   function resetStats() {
     // will make sure that score and question # counters are empty at the start of the quiz
-    $('#start').on('submit', (e) => {
+    $('.start').on('submit', (e) => {
       STORE.score = 0;
       STORE.currentQuestion = 0;
       renderQuiz();
@@ -32,14 +32,10 @@ function main() {
   function beginQuiz() {
     console.log('Begin quiz');
     // when user hits start button, resetStats is called and quiz is rendered
-
-    $('#quiz').on('submit', (e) => {
+    $('#quiz').submit('.start', (e) => {
       e.preventDefault();
-
       $('.start-content').remove();
       renderQuestion();
-
-      console.log('start button pushed');
     });
   }
 
@@ -54,31 +50,35 @@ function main() {
       listElements += `<li><input type="radio" class="inputs" name="answers" required ><p class="questionNames">${STORE
         .allQuestions[i].answers[j]}</p></input></li>`;
     }
-
     $('.question-content').html(` 
       <ul><h2>${STORE.allQuestions[i].question}</h2>
       ${listElements}
       </ul> 
     `);
-    $('<button type="submit" class="submitAns"> submit answer</button > ').appendTo('.button-row');
+    $('<button type="submit" class="submitAns">submit answer</button >').appendTo('.button-row');
+    $('#quiz').submit('.submitAns', (e) => {
+      e.preventDefault();
+      submitAnswer();
+    });
   }
 
   // user submits an answer (not -- on.('click') --)
   function submitAnswer() {
     // when user submits an answer, grab input
-    $('main').on('submit', 'submitButton', (e) => {
-      e.preventDefault();
-      $('ul').hide();
-      $('.response').show();
-      let selected = $('input:checked');
-      let answer = selected.val();
-      let correct = STORE[currentQuestion].correctAns;
-      if (answer === correct) {
-        correct();
-      } else {
-        wrong();
-      }
-    });
+
+    $('.question-content').remove();
+    $('.response').show();
+    let selected = $('input:checked');
+    let answer = selected.val();
+    console.log(answer);
+    let correct = STORE[currentQuestion].correctAns;
+    console.log(correct);
+    if (answer === correct) {
+      correct();
+    } else {
+      wrong();
+    }
+    nextQuestion();
   }
 
   // the display shown if user answers correctly
@@ -97,7 +97,15 @@ function main() {
   // generates next question
   function nextQuestion() {
     // when user clicks the Next button, move to the next object in the store
-    // add if else statement: if there are no more questions left, call function results()
+    // add if else statement: if there are no more questions left, call function results()if (questionNumber < STORE.length) {
+    if (currentQuestion < `${STORE.allQuestions.length}`) {
+      console.log('next question');
+      return renderQuestion(currentQuestion);
+    } else {
+      $('.questionBox').hide();
+      console.log('final score is working');
+      $('.questionNumber').text(10);
+    }
   }
 
   // generates final screen, including score, and congratulations or defeat message
@@ -113,17 +121,14 @@ function main() {
     // re-renders quiz from the beginning
   }
 
-  function createQuiz() {
-    beginQuiz();
-    renderQuestion();
-    submitAnswer();
-    nextQuestion();
-    updateQuestionNum();
-    updateScore();
-    restartQuiz();
-  }
+  // function createQuiz() {
+  //   beginQuiz();
+  //   submitAnswer();
+  //   updateQuestionNum();
+  //   updateScore();
+  // }
 
-  createQuiz();
+  beginQuiz();
 }
 console.log('first line of js');
 
