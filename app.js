@@ -18,9 +18,16 @@ function main() {
   
 
   // // updates the counter displaying how many questions the user has answered out of the total # of questions
-  // function updateQuestionNum() {
-  //   // 1++ to STORE.currentQuestion each time user reaches a new question (function nextQuestion())
+  // function updateQuestionNum(questionProgress) {
+  // //   // 1++ to STORE.currentQuestion each time user reaches a new question (function nextQuestion())
+  
+  // STORE.currentQuestion = questionProgress;
+
+  // $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
+  // console.log('update question number works');
   // }
+
+
 
   // allows user to start the quiz
   function beginQuiz() {
@@ -32,6 +39,7 @@ function main() {
       $('#quiz').off('submit');
 
       updateScore(0);
+      // updateQuestionNum(0);
       $('.start-content').remove();
       
       nextQuestion();      
@@ -44,7 +52,7 @@ function main() {
 
   function renderQuestion() {
     
-    $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
+
 
     let i = STORE.currentQuestion - 1;
     let listElements = '';
@@ -98,6 +106,7 @@ function main() {
         
       } else {
         console.log("wrong");
+        wrongAns(currentQuestionIndex);
       }
 
     });
@@ -110,7 +119,7 @@ function main() {
     console.log('right answer 1 of 2');
     $('.question-content').remove();
     $('.submission-response').html(
-      `<h4>Way to go!</h4>
+      `<h3>Pass completed! Way to go!</h3>
       <button type='button' class='next'>Next question</button>`
     );
     
@@ -123,13 +132,22 @@ function main() {
 
 
   // // the display shown if user answers incorrectly; flash silver
-  // function wrongAns() {
+  function wrongAns(currentQuestionIndex) {
   //   // after submitAnswer, if incorrect/check against properties in the STORE/, display message stating so, and flash the box? window? a lighter blue
-  //  
+  
+  console.log('wrong answer 1 of');
+  $('.question-content').remove();
+  $('.submission-response').html(
+    `<h3>Wrong! 10-yard penalty!</h3>
+    <h4>The correct answer is ${STORE.allQuestions[currentQuestionIndex].correctAns}.</h4>
+    <button type='button' class='next'>Next question</button>`
+  );
 
   //  nextQuestion();    
   
-  // }
+  }
+
+
 
   // generates next question
   function nextQuestion() {
