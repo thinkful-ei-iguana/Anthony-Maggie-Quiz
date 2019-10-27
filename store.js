@@ -41,7 +41,7 @@ const STORE = {
 
   score: 0,
 
-  currentQuestion: 1
+  currentQuestion: 0
 };
 
 let score = `${STORE.score}`;

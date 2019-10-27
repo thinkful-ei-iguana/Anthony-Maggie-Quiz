@@ -43,7 +43,7 @@ function main() {
     $('.score').text(`Score: ${STORE.score}`);
     $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
 
-    let i = STORE.currentQuestion - 1;
+    let i = STORE.currentQuestion;
     let listElements = '';
 
     for (let j = 0; j < STORE.allQuestions[i].answers.length; j++) {
@@ -71,7 +71,7 @@ function main() {
     let selected = $('input:checked');
     let answer = selected.val();
     console.log(answer);
-    let correct = `${STORE[currentQuestion].correctAns}`;
+    let correct = STORE['currentQuestion'].correctAns;
     console.log(correct);
     if (answer === correct) {
       correct();
