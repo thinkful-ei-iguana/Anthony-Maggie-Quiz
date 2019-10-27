@@ -82,71 +82,37 @@ function main() {
       <button type="submit" class="submitAns">submit answer</button>
     `);
     
-    submitAnswer(i);
+    answerFeedback(i);
 
     console.log('render question is working');
   }
 
   
-  
-  // user submits an answer (not -- on.('click') --)
-  function submitAnswer(currentQuestionIndex) {
-    // when user submits an answer, grab input
-    console.log('submit answer 1 of');
 
+
+  function answerFeedback(currentQuestionIndex){
     $('#quiz').on('submit', (e) => {
       e.preventDefault();
       let userInput = $('input[name=\'answers\']:checked').val();
       let correctAnswer = STORE.allQuestions[currentQuestionIndex].correctAns;
-      console.log(userInput);
-
       if(userInput === correctAnswer) {
-        console.log("you are right!");
-        rightAns();
-        
+        $('.question-content').remove();
+        $('.submission-response').html(
+          `<h3>Pass completed! Way to go!</h3>
+        <button type='button' class='next'>Next question</button>`
+        );
+      
+        updateScore(STORE.score + 1);
       } else {
-        console.log("wrong");
-        wrongAns(currentQuestionIndex);
+        $('.question-content').remove();
+        $('.submission-response').html(
+          `<h3>Wrong! 10-yard penalty!</h3>
+        <h4>The correct answer is ${STORE.allQuestions[currentQuestionIndex].correctAns}.</h4>
+        <button type='button' class='next'>Next question</button>`
+        );
       }
-
     });
   }
-  
-
-  function rightAns() {
-    // after submitAnswer, if correct/check against properties in the STORE/, display message stating so, and flash the box? window? a lighter blue
-    // call update score
-    console.log('right answer 1 of 2');
-    $('.question-content').remove();
-    $('.submission-response').html(
-      `<h3>Pass completed! Way to go!</h3>
-      <button type='button' class='next'>Next question</button>`
-    );
-    
-    
-
-    updateScore(STORE.score + 1);
-    // nextQuestion();
-    console.log('right answer 2 of 2');
-  }
-
-
-  // // the display shown if user answers incorrectly; flash silver
-  function wrongAns(currentQuestionIndex) {
-  //   // after submitAnswer, if incorrect/check against properties in the STORE/, display message stating so, and flash the box? window? a lighter blue
-  
-  console.log('wrong answer 1 of');
-  $('.question-content').remove();
-  $('.submission-response').html(
-    `<h3>Wrong! 10-yard penalty!</h3>
-    <h4>The correct answer is ${STORE.allQuestions[currentQuestionIndex].correctAns}.</h4>
-    <button type='button' class='next'>Next question</button>`
-  );
-
-  //  nextQuestion();    
-  
-  }
-
 
 
   // generates next question
