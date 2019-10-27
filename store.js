@@ -41,10 +41,7 @@ const STORE = {
 
   score: 0,
 
-  currentQuestion: 0
+  currentQuestion: 1
 };
-
-let score = `${STORE.score}`;
-let currentQuestion = `${STORE.currentQuestion}`;
 
 console.log(STORE);
