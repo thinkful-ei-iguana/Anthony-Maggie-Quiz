@@ -100,15 +100,18 @@ function main() {
         
         $('.submission-response').html(
           `<h3>Pass completed! Way to go!</h3>
-        <button type='submit' class='next'>Next question</button>`
+          <img src="imgs/correct_highfive.jpeg" alt="Colts players high-fiving" class="images" width="300px">
+          <br></br>
+          <button type='submit' class='next'>Next question</button>`
         );
       
         updateScore(STORE.score + 1);
       } else {
         $('.submission-response').html(
-          `<h3>Wrong! 10-yard penalty!</h3>
-        <h4>The correct answer is ${STORE.allQuestions[currentQuestionIndex].correctAns}.</h4>
-        <button type='submit' class='next'>Next question</button>`
+          `<h3>Wrong: 10-yard penalty!</h3>
+          <img src="imgs/wrong_holding.jpg" alt="referee calling a holding penalty" class="images" width="300px">
+          <h4>The correct answer is ${STORE.allQuestions[currentQuestionIndex].correctAns}.</h4>
+          <button type='submit' class='next'>Next question</button>`
         );
       }
     
@@ -151,11 +154,17 @@ function main() {
     $('.question-content').remove();
     let resultMessage = '';
     if (STORE.score >= 5) {
-      resultMessage = `Great job, sport! You earned ${STORE.score}/${STORE.allQuestions.length} points!`;
+      resultMessage = `Great job, sport! You earned ${STORE.score}/${STORE.allQuestions.length} points!
+      <br></br>  
+      <img src='imgs/victory_colts.jpg' alt='Colts player celebrates on the field as confetti rains down' class='victory' width='600px'>`;
     } else if (STORE.score < 5 && STORE.score >= 3) {
-      resultMessage = `Good effort, rookie! You earned ${STORE.score}/${STORE.allQuestions.length} points.`;
+      resultMessage = `Good effort, rookie! You earned ${STORE.score}/${STORE.allQuestions.length} points.
+      <br></br> 
+      <img src='imgs/nicetry_colts.jpg' alt='two football players in a brief encouraging embrace' class='victory' width='600px'>`;
     } else if (STORE.score < 3) {
-      resultMessage = `You've been benched for earning only ${STORE.score}/${STORE.allQuestions.length} points this game!`;
+      resultMessage = `You've been benched for earning only ${STORE.score}/${STORE.allQuestions.length} points this game!
+      <br></br>  
+      <img src='imgs/defeat_colts.jpg' alt='a football player sits alone on the field' class='victory' width='600px'>`;
     }
     console.log(`${resultMessage}`);
 
@@ -167,26 +176,18 @@ function main() {
             </div>
 
             <div class="restart-button">             
-              <button type="button" id="restart"> Restart Quiz </button>    
+              <button type="submit" id="restart"> Restart Quiz </button>    
             </div>
         </form>
        </div>`
     );
-    restartQuiz();
+    $('quiz').on('submit', (e) => {
+      e.preventDefault();
+      restartQuiz();
+    })
+    
   }
 
-
-  // resets score and question # counters
-  // function resetStats() {
-  //   // will make sure that score and question # counters are empty at the start of the quiz
-  //   console.log('reset stats 1 of 2');
-  //   $('#start').on('submit', (e) => {
-  //     e.preventDefault();
-  //     STORE.score = 0;
-  //     STORE.currentQuestion = 0;
-  //     console.log('reset stats 2 of 2');
-  //   });
-  // }
 
 
   // gives the user the chance to take the quiz again from the beginning, once they have completed the quiz
@@ -194,9 +195,10 @@ function main() {
   // clicking restart button resets score and currentQuestion counters
   // re-renders quiz from the beginning
     console.log('restart 1 of');
+
     $('#quiz').on('submit', (e) => {
       e.preventDefault();
-      resetStats();
+      
       location.reload(true);
       
     });
