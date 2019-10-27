@@ -71,7 +71,7 @@ function main() {
     let selected = $('input:checked');
     let answer = selected.val();
     console.log(answer);
-    let correct = STORE[currentQuestion].correctAns;
+    let correct = `${STORE[currentQuestion].correctAns}`;
     console.log(correct);
     if (answer === correct) {
       correct();
