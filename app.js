@@ -13,10 +13,11 @@ function main() {
     console.log('update score works');
   }
 
-  // // updates the counter displaying how many questions the user has answered out of the total # of questions
-  // function updateQuestionNum() {
-  //   // 1++ to STORE.currentQuestion each time user reaches a new question (function nextQuestion())
-  // }
+  // updates the counter displaying how many questions the user has answered out of the total # of questions
+  function updateQuestionNum() {
+    // 1++ to STORE.currentQuestion each time user reaches a new question (function nextQuestion())
+    STORE.currentQuestion++;
+  }
 
   // allows user to start the quiz
   function beginQuiz() {
@@ -30,12 +31,13 @@ function main() {
       updateScore(0);
       $('.start-content').remove();
 
-      nextQuestion();
+      renderQuestion();
     });
     console.log('Begin quiz 2 of 2');
   }
 
   function renderQuestion() {
+    $('.question-content').show();
     $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
 
     let i = STORE.currentQuestion - 1;
@@ -75,7 +77,7 @@ function main() {
     // when user submits an answer, grab input
     console.log('submit answer 1 of');
 
-    $('#quiz').on('submit', (e) => {
+    $('#quiz').submit('.submitAns', (e) => {
       e.preventDefault();
       let userInput = $('input[name=\'answers\']:checked').val();
       let correctAnswer = STORE.allQuestions[currentQuestionIndex].correctAns;
@@ -95,51 +97,47 @@ function main() {
     // after submitAnswer, if correct/check against properties in the STORE/, display message stating so, and flash the box? window? a lighter blue
     // call update score
     console.log('right answer 1 of 2');
-    $('.question-content').remove();
+    $('.submission-response').show();
+    $('.question-content').hide();
     $('.submission-response').html(
       `<h4>Way to go!</h4>
       <button type='button' class='next'>Next question</button>`
     );
-
+    nextQuestion();
     updateScore(STORE.score + 1);
-    // nextQuestion();
     console.log('right answer 2 of 2');
-    // $('.submission-response').on('submit', (e) => {
-    //   console.log('next question clicked');
-    //   e.preventDefault();
-    //   nextQuestion();
-    // });
   }
 
   // the display shown if user answers incorrectly; flash silver
   function wrongAns() {
     // after submitAnswer, if incorrect/check against properties in the STORE/, display message stating so, and flash the box? window? a lighter blue
-    $('.question-content').remove();
+    $('.submission-response').show();
+    $('.question-content').hide();
     $('.submission-response').html(
-      `<h4>CMON ON MAN!</h4>
+      `<h4>CMON MAN!</h4>
       <button type='button' class='next'>Next question</button>`
     );
-    // $('.submission-response').on('submit', (e) => {
-    //   console.log('next question clicked');
-    //   e.preventDefault();
-    //   nextQuestion();
-    // });
+    nextQuestion();
   }
 
   // generates next question
   function nextQuestion() {
     // when user clicks the Next button, move to the next object in the store
     // add if else statement: if there are no more questions left, call function results()
-    console.log('next question 1 of 2');
-    if (STORE.currentQuestion < STORE.allQuestions.length) {
-      renderQuestion();
-      // updateQuestionNum();
-    } else {
-      $('.question-content').remove();
-      $('.results-content').add(results());
-    }
+    $('.submission-response').click('.next', (e) => {
+      $('.submission-response').hide();
+      e.preventDefault();
+      console.log('next question 1 of 2');
+      if (STORE.currentQuestion < STORE.allQuestions.length) {
+        renderQuestion();
+        updateQuestionNum();
+      } else {
+        $('.question-content').remove();
+        $('.results-content').add(results());
+      }
 
-    console.log('next question 2 of 2');
+      console.log('next question 2 of 2');
+    });
   }
 
   // generates final screen, including score, and congratulations or defeat message
