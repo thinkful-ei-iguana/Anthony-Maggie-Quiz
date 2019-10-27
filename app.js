@@ -6,9 +6,12 @@ function main() {
  
 
   // // updates the score counter each time a question is answered correctly
-  function updateScore() {
+  function updateScore(newScore) {
   // 1++ to STORE.score each time user correctly answers a questions (function correct() called)
-    STORE.score += 1;
+    STORE.score = newScore;
+
+    $('.score').text(`Score: ${STORE.score}`);
+
     console.log('update score works');
 
   }
@@ -28,7 +31,9 @@ function main() {
       e.preventDefault();
       $('#quiz').off('submit');
 
+      updateScore(0);
       $('.start-content').remove();
+      
       nextQuestion();      
     });
     console.log('Begin quiz 2 of 2');
@@ -38,7 +43,7 @@ function main() {
 
 
   function renderQuestion() {
-    $('.score').text(`Score: ${STORE.score}`);
+    
     $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
 
     let i = STORE.currentQuestion - 1;
@@ -89,6 +94,7 @@ function main() {
 
       if(userInput === correctAnswer) {
         console.log("you are right!");
+        rightAns();
         
       } else {
         console.log("wrong");
@@ -102,14 +108,16 @@ function main() {
     // after submitAnswer, if correct/check against properties in the STORE/, display message stating so, and flash the box? window? a lighter blue
     // call update score
     console.log('right answer 1 of 2');
+    $('.question-content').remove();
     $('.submission-response').html(
       `<h4>Way to go!</h4>
       <button type='button' class='next'>Next question</button>`
     );
     
     
-    updateScore();
-    nextQuestion();
+
+    updateScore(STORE.score + 1);
+    // nextQuestion();
     console.log('right answer 2 of 2');
   }
 
