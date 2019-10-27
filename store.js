@@ -89,7 +89,7 @@ const STORE = {
 
   score: 0,
 
-  currentQuestion: 1
+  currentQuestion: 0
 };
 
 

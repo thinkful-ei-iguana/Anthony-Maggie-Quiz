@@ -18,14 +18,15 @@ function main() {
   
 
   // // updates the counter displaying how many questions the user has answered out of the total # of questions
-  // function updateQuestionNum(questionProgress) {
-  // //   // 1++ to STORE.currentQuestion each time user reaches a new question (function nextQuestion())
+  function updateQuestionNum(questionProgress) {
+  //   // 1++ to STORE.currentQuestion each time user reaches a new question (function nextQuestion())
   
-  // STORE.currentQuestion = questionProgress;
+    STORE.currentQuestion = questionProgress;
 
-  // $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
-  // console.log('update question number works');
-  // }
+    $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
+    
+    console.log('update question number works');
+  }
 
 
 
@@ -39,7 +40,7 @@ function main() {
       $('#quiz').off('submit');
 
       updateScore(0);
-      // updateQuestionNum(0);
+    
       $('.start-content').remove();
       
       nextQuestion();      
@@ -51,8 +52,6 @@ function main() {
 
 
   function renderQuestion() {
-    
-
 
     let i = STORE.currentQuestion - 1;
     let listElements = '';
@@ -93,24 +92,33 @@ function main() {
   function answerFeedback(currentQuestionIndex){
     $('#quiz').on('submit', (e) => {
       e.preventDefault();
+      $('#quiz').off('submit');
       let userInput = $('input[name=\'answers\']:checked').val();
       let correctAnswer = STORE.allQuestions[currentQuestionIndex].correctAns;
+      $('.question-content').empty();
       if(userInput === correctAnswer) {
-        $('.question-content').remove();
+        
         $('.submission-response').html(
           `<h3>Pass completed! Way to go!</h3>
-        <button type='button' class='next'>Next question</button>`
+        <button type='submit' class='next'>Next question</button>`
         );
       
         updateScore(STORE.score + 1);
       } else {
-        $('.question-content').remove();
         $('.submission-response').html(
           `<h3>Wrong! 10-yard penalty!</h3>
         <h4>The correct answer is ${STORE.allQuestions[currentQuestionIndex].correctAns}.</h4>
-        <button type='button' class='next'>Next question</button>`
+        <button type='submit' class='next'>Next question</button>`
         );
       }
+    
+    
+      $('#quiz').on('submit', (e) => {
+        e.preventDefault();
+        $('#quiz').off('submit');
+        $('.submission-response').empty();
+        nextQuestion();
+      });
     });
   }
 
@@ -120,12 +128,15 @@ function main() {
     // when user clicks the Next button, move to the next object in the store
     // add if else statement: if there are no more questions left, call function results()
     console.log('next question 1 of 2');
+    
     if(STORE.currentQuestion < STORE.allQuestions.length) {
+  
+      updateQuestionNum(STORE.currentQuestion + 1); 
       renderQuestion();
-      // updateQuestionNum();
+
     } else {
       $('.question-content').remove();
-      $('.results-content').add(results());
+      $('.results-content').add( results());
     }
 
     console.log('next question 2 of 2');
@@ -166,16 +177,16 @@ function main() {
 
 
   // resets score and question # counters
-  function resetStats() {
-    // will make sure that score and question # counters are empty at the start of the quiz
-    console.log('reset stats 1 of 2');
-    $('#start').on('submit', (e) => {
-      e.preventDefault();
-      STORE.score = 0;
-      STORE.currentQuestion = 0;
-      console.log('reset stats 2 of 2');
-    });
-  }
+  // function resetStats() {
+  //   // will make sure that score and question # counters are empty at the start of the quiz
+  //   console.log('reset stats 1 of 2');
+  //   $('#start').on('submit', (e) => {
+  //     e.preventDefault();
+  //     STORE.score = 0;
+  //     STORE.currentQuestion = 0;
+  //     console.log('reset stats 2 of 2');
+  //   });
+  // }
 
 
   // gives the user the chance to take the quiz again from the beginning, once they have completed the quiz
