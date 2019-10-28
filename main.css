@@ -1,3 +1,5 @@
+
+  
 /* Begin Imports */
 
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
@@ -166,6 +168,8 @@ button:hover::after {
 	color: #fff;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
+	margin-top: -100px;
+	
 }
 
 /* Begin quiz questions */
@@ -178,8 +182,13 @@ button:hover::after {
 	color: cyan;
 }
 
+#quiz{
+	margin-top: 120px;
+}
+
 .question-content li {
-	text-align: initial;
+	text-align: center;
+	border: 20px solid transparent;
 }
 
 .submission-response {
@@ -193,10 +202,17 @@ button:hover::after {
 
 .submission-response .true {
 	color: green;
+	margin-top: -50px;
+	padding: 20px;
+}
+
+.submission-response .next {
+	/* margin-top: 50px; */
 }
 
 .submission-response .false {
 	color: red;
+	margin-top: -50px;
 }
 
 .correctAns {
@@ -207,6 +223,7 @@ button:hover::after {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
 	color: #fff;
+	margin-top: -50px;
 }
 
 .results-msg .goodScore {
@@ -314,4 +331,4 @@ button:hover::after {
 		margin-top: 200px;
 	}
 }
-/* End Desktop */
+
