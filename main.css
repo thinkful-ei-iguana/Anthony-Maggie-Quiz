@@ -30,6 +30,7 @@ body h1 {
 	color: #fff;
 	font-family: 'Indie Flower', cursive;
 	font-size: calc(25px + 2vmin);
+	
 }
 
 /* End body */
@@ -52,11 +53,14 @@ main {
 
 .score {
 	display: inline;
+	font-family: 'Raleway', sans-serif;
 }
 
 .question-number {
+	font-family: 'Raleway', sans-serif;
 	text-align: right;
 	display: inline;
+	margin-left: 180px;
 }
 
 /* End quiz data */
@@ -115,6 +119,7 @@ ul {
 	margin: auto auto;
 	color: #fff;
 	padding: 0;
+	position: relative;
 }
 
 .start:hover {
@@ -168,6 +173,7 @@ button:hover::after {
 
 .answers {
 	text-align: left;
+	font-family: 'Raleway', sans-serif;
 	color: cyan;
 }
 
@@ -235,7 +241,7 @@ button:hover::after {
 		color: darkblue;
 		height: 500px;
 		width: 500px;
-	}
+	} 
 
 	.start-content {
 		margin-top: 200px;
