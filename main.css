@@ -46,6 +46,10 @@ main {
 
 /* Begin quiz data */
 
+.quizData {
+	margin-bottom: 20px;
+}
+
 .score {
 	display: inline;
 }
@@ -59,10 +63,27 @@ main {
 
 /* Begin quiz */
 
+img {
+	height: 75px;
+	width: 120px;
+}
+
+.victory {
+	height: 100px;
+	width: 150px;
+	margin-bottom: 20px;
+}
+
+.start-content {
+	margin-top: 130px;
+}
+
 #quiz {
 	text-align: center;
 	padding: 20px 20px;
 	color: darkblue;
+	height: 300px;
+	width: 200px;
 }
 
 #quiz fieldset {
@@ -88,8 +109,6 @@ ul {
 
 .start {
 	background: transparent;
-	border: 0;
-	border-radius: 5px;
 	font-size: calc(15px + 2vmin);
 	transition: all 0.5s ease-out;
 	font-family: 'Indie Flower', cursive;
@@ -105,6 +124,7 @@ ul {
 button {
 	border: 0;
 	padding: 0;
+	margin: auto auto;
 	background: transparent;
 	color: #fff;
 	transition: all 0.5s ease-out;
@@ -146,29 +166,80 @@ button:hover::after {
 
 /* Begin quiz answers */
 
-.question-content {
+.answers {
 	text-align: left;
-	margin: 50px;
+	color: cyan;
 }
 
-.question-content .inputs {
+.question-content input {
 	float: left;
-	margin-top: 10px;
 }
 
-.questionNames {
-	margin-top: 10px;
-	text-align: left;
+.submission-response {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
 }
 
-.inputs {
-	margin: 10px;
+.submission-response h4 {
+	color: #fff;
+}
+
+.submission-response .true {
+	color: green;
+}
+
+.submission-response .false {
+	color: red;
+}
+
+.correctAns {
+	color: cyan;
+}
+
+.results-msg h4 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+	color: #fff;
+}
+
+.results-msg .goodScore {
+	color: green;
+}
+
+.results-msg .ehhScore {
+	color: yellow;
+}
+
+.results-msg .badScore {
+	color: red;
 }
 
 /* End quiz anwsers */
 
 /* Begin tablet */
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 768px) {
+	img {
+		height: 275px;
+		width: 225px;
+	}
+
+	.victory {
+		height: 250px;
+		width: 400px;
+		margin-bottom: 20px;
+	}
+
+	#quiz {
+		text-align: center;
+		padding: 20px 20px;
+		color: darkblue;
+		height: 500px;
+		width: 500px;
+	}
+
+	.start-content {
+		margin-top: 200px;
+	}
 }
 /* End tablet */
 
@@ -214,6 +285,34 @@ button:hover::after {
 		font-size: calc(15px + 2vmin);
 		transition: all 0.5s ease-out;
 		font-family: 'Indie Flower', cursive;
+	}
+
+	.question-content h2 {
+		margin-bottom: 50px;
+		font-size: calc(10px + 2vmin);
+	}
+
+	#quiz {
+		text-align: center;
+		padding: 20px 20px;
+		color: darkblue;
+		height: 500px;
+		width: 500px;
+	}
+
+	img {
+		height: 300px;
+		width: 250px;
+	}
+
+	.victory {
+		height: 300px;
+		width: 500px;
+		margin-bottom: 20px;
+	}
+
+	.start-content {
+		margin-top: 200px;
 	}
 }
 /* End Desktop */
