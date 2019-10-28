@@ -75,14 +75,14 @@ function main() {
         listElements += `
         <li>
           
-          <input type="radio" name="answers" value="${answerOption}" checked>
-          <span class="answers">${answerOption}</span>
+          <input type='radio' id='checked-answer' name='answers' value='${answerOption}' checked>
+          <label for='checked-answer' class='answers'>${answerOption}</label>
         </li>`;
       } else {
         listElements += `
         <li>
-          <input type="radio" name="answers" value="${answerOption}">
-           <span class="answers">${answerOption}</span>
+          <input type='radio' id='unchecked-answer' name='answers' value='${answerOption}'>
+           <label for='unchecked-answer' class='answers'>${answerOption}</label>
         </li>`;
       }
     }
