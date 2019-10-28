@@ -139,7 +139,7 @@ function main() {
 
     } else {
       $('.question-content').remove();
-      $('.results-content').add( results());
+      $('.results-content').add(results());
     }
 
     console.log('next question 2 of 2');
