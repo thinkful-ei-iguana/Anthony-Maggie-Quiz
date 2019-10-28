@@ -191,10 +191,12 @@ function main() {
     // re-renders quiz from the beginning
     console.log('restart 1 of');
 
-    $('#quiz').on('submit', (e) => {
+    $('#quiz').submit('#restart', (e) => {
       e.preventDefault();
-
-      location.reload(true);
+      console.log('working');
+      STORE.currentQuestion = 0;
+      STORE.score = 0;
+      renderQuestion();
     });
 
     console.log('restart 2 of');

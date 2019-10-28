@@ -46,9 +46,6 @@ main {
 
 /* Begin quiz data */
 
-.quizData {
-}
-
 .score {
 	display: inline;
 }
@@ -105,7 +102,7 @@ ul {
 	transition: all 0.5s ease-out;
 }
 
-.button-row .submitAns {
+button {
 	border: 0;
 	padding: 0;
 	background: transparent;
@@ -113,6 +110,24 @@ ul {
 	transition: all 0.5s ease-out;
 	font-family: 'Indie Flower', cursive;
 	font-size: calc(10px + 2vmin);
+}
+
+button {
+	text-decoration: none;
+}
+
+button::after {
+	content: '';
+	display: block;
+	width: 0;
+	height: 1px;
+	background: #fff;
+	transition: width .3s;
+}
+
+button:hover::after {
+	width: 100%;
+	transition: width .3s;
 }
 
 /* End quiz buttons */
