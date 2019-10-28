@@ -1,5 +1,3 @@
-
-  
 /* Begin Imports */
 
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
@@ -206,8 +204,8 @@ button:hover::after {
 	padding: 20px;
 }
 
-.submission-response .next {
-	/* margin-top: 50px; */
+.submitAns {
+	margin-top: 50px;
 }
 
 .submission-response .false {
