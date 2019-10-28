@@ -84,6 +84,7 @@ img {
 	color: darkblue;
 	height: 300px;
 	width: 200px;
+	display: inline-block;
 }
 
 #quiz fieldset {
@@ -134,6 +135,7 @@ button {
 
 button {
 	text-decoration: none;
+	margin-bottom: 20px;
 }
 
 button::after {
@@ -167,12 +169,11 @@ button:hover::after {
 /* Begin quiz answers */
 
 .answers {
-	text-align: left;
 	color: cyan;
 }
 
-.question-content input {
-	float: left;
+.question-content li {
+	text-align: initial;
 }
 
 .submission-response {
@@ -265,14 +266,7 @@ button:hover::after {
 	main {
 	}
 
-	#quiz {
-		text-align: center;
-		padding: 100px 100px;
-		color: lightblue;
-	}
-
 	.heading {
-		color: darkblue;
 		font-family: 'Indie Flower', cursive;
 		border: 0;
 		padding-bottom: 50px;
@@ -295,14 +289,13 @@ button:hover::after {
 	#quiz {
 		text-align: center;
 		padding: 20px 20px;
-		color: darkblue;
-		height: 500px;
-		width: 500px;
+		height: 600px;
+		width: 700px;
 	}
 
 	img {
 		height: 300px;
-		width: 250px;
+		width: 300px;
 	}
 
 	.victory {
