@@ -205,8 +205,6 @@ function main() {
       restartQuiz();
     });
 
-    
-  
   }
 
   function resetStats() {
@@ -223,10 +221,10 @@ function main() {
   // // re-renders quiz from the beginning
   //   console.log('restart 1 of');
     
-      resetStats();
+    resetStats();
       
-      $('.results-content').empty();
-      $('.question-content').html(renderQuestion());   
+    $('.results-content').empty();
+    $('.question-content').html(renderQuestion());   
 
   }
   beginQuiz();
