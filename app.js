@@ -1,11 +1,13 @@
 'use strict';
 
+// this function holds all other functions
 function main() {
   console.log('main is working');
 
   // // updates the score counter each time a question is answered correctly
   function updateScore(newScore) {
-    // 1++ to STORE.score each time user correctly answers a questions (function correct() called)
+    // 1++ to STORE.score and interface score counter each time user correctly answers a questions
+
     STORE.score = newScore;
 
     $('.score').text(`Score: ${STORE.score}`);
@@ -13,9 +15,9 @@ function main() {
     console.log('update score works');
   }
 
-  // // updates the counter displaying how many questions the user has answered out of the total # of questions
+  // updates the counter displaying how many questions the user has answered out of the total # of questions
   function updateQuestionNum(questionProgress) {
-    //   // 1++ to STORE.currentQuestion each time user reaches a new question (function nextQuestion())
+    // 1++ to STORE.currentQuestion and interface question number counter each time user reaches a new question
 
     STORE.currentQuestion = questionProgress;
 
@@ -24,10 +26,10 @@ function main() {
     console.log('update question number works');
   }
 
-  // allows user to start the quiz
+  // allows user to proceed beyond the initial landing page
   function beginQuiz() {
     console.log('Begin quiz 1 of 2');
-    // when user hits start button, resetStats is called and quiz is rendered
+    // when user hits start button, score counter is updated to 0, start page content is removed, nextQuestion funtion is called to bring user to the first question
 
     $('#quiz').on('submit', (e) => {
       e.preventDefault();
@@ -42,7 +44,28 @@ function main() {
     console.log('Begin quiz 2 of 2');
   }
 
+  // determines the next display; either next question, or results view
+  function nextQuestion() {
+    // upon a submit action, user moves to the next question, or if all questions have been answered, moves to results
+
+    console.log('next question 1 of 2');
+
+    if (STORE.currentQuestion < STORE.allQuestions.length) {
+      updateQuestionNum(STORE.currentQuestion + 1);
+      renderQuestion();
+    } else {
+      $('.question-content').empty();
+      $('.results-content').add(results());
+    }
+
+    console.log('next question 2 of 2');
+  }
+
+  // displays question, answer options, and submit button
   function renderQuestion() {
+    // based on the current index of STORE.allQuestions, will display a question followed by four radio button answer options
+    // user can select an answer and submit via the button when ready
+
     let i = STORE.currentQuestion - 1;
     let listElements = '';
 
@@ -51,23 +74,24 @@ function main() {
       if (j === 0) {
         listElements += `
         <li>
+          
           <input type="radio" name="answers" value="${answerOption}" checked>
-          ${answerOption}
+          <span class="answers">${answerOption}</span>
         </li>`;
       } else {
         listElements += `
         <li>
           <input type="radio" name="answers" value="${answerOption}">
-          ${answerOption}
+           <span class="answers">${answerOption}</span>
         </li>`;
       }
     }
 
     $('.question-content').html(` 
-      <ul>${STORE.allQuestions[i].question}
+      <ul><h2>${STORE.allQuestions[i].question}</h2>
         ${listElements}
       </ul> 
-      <button type="submit" class="submitAns">submit answer</button>
+      <button type="submit" class="submitAns">Submit answer</button>
     `);
 
     answerFeedback(i);
@@ -75,7 +99,12 @@ function main() {
     console.log('render question is working');
   }
 
+  // captures the chosen answer and displays feedback on whether the user is correct/incorrect
   function answerFeedback(currentQuestionIndex) {
+    // listens for submit, compares selected answer against true answer
+    // displays feedback message and image
+    // updates score counter if correct answer is chosen
+
     $('#quiz').on('submit', (e) => {
       e.preventDefault();
       $('#quiz').off('submit');
@@ -84,7 +113,7 @@ function main() {
       $('.question-content').empty();
       if (userInput === correctAnswer) {
         $('.submission-response').html(
-          `<h3>Pass completed! Way to go!</h3>
+          `<h3 class="true">Pass completed! Way to go!</h3>
           <img src="imgs/correct_highfive.jpeg" alt="Colts players high-fiving" class="images" width="300px">
           <br></br>
           <button type='submit' class='next'>Next question</button>`
@@ -93,13 +122,13 @@ function main() {
         updateScore(STORE.score + 1);
       } else {
         $('.submission-response').html(
-          `<h3>Wrong: 10-yard penalty!</h3>
+          `<h3 class="false">Wrong: 10-yard penalty!</h3>
           <img src="imgs/wrong_holding.jpg" alt="referee calling a holding penalty" class="images" width="300px">
-          <h4>The correct answer is ${STORE.allQuestions[currentQuestionIndex].correctAns}.</h4>
+          <h4>The correct answer is <span class="correctAns">${STORE.allQuestions[currentQuestionIndex]
+    .correctAns}</span>.</h4>
           <button type='submit' class='next'>Next question</button>`
         );
       }
-
       if (STORE.allQuestions[currentQuestionIndex] === STORE.allQuestions[6]) {
         if (userInput === correctAnswer) {
           $('.submission-response').html(
@@ -129,79 +158,73 @@ function main() {
     });
   }
 
-  // generates next question
-  function nextQuestion() {
-    // when user clicks the Next button, move to the next object in the store
-    // add if else statement: if there are no more questions left, call function results()
-    console.log('next question 1 of 2');
-
-    if (STORE.currentQuestion < STORE.allQuestions.length) {
-      updateQuestionNum(STORE.currentQuestion + 1);
-      renderQuestion();
-    } else {
-      $('.question-content').remove();
-      $('.results-content').add(results());
-    }
-
-    console.log('next question 2 of 2');
-  }
-
-  // generates final screen, including score, and congratulations or defeat message
+  // generates final screen where final score and specific message based on how well user did displays
   function results() {
     // display score and currentQuestion counters
-    // display final message based on score?
+    // display final message based on score
     // display restart button
-    $('.question-content').remove();
+
     let resultMessage = '';
     if (STORE.score >= 5) {
-      resultMessage = `Great job, sport! You earned ${STORE.score}/${STORE.allQuestions.length} points!
+      resultMessage = `Great job, sport! You earned <span class="goodScore">${STORE.score}</span>/${STORE
+        .allQuestions.length} points!
       <br></br>  
       <img src='imgs/victory_colts.jpg' alt='Colts player celebrates on the field as confetti rains down' class='victory' width='600px'>`;
     } else if (STORE.score < 5 && STORE.score >= 3) {
-      resultMessage = `Good effort, rookie! You earned ${STORE.score}/${STORE.allQuestions.length} points.
+      resultMessage = `Good effort, rookie! You earned <span class="ehhScore">${STORE.score}</span>/${STORE
+        .allQuestions.length} points.
       <br></br> 
       <img src='imgs/nicetry_colts.jpg' alt='two football players in a brief encouraging embrace' class='victory' width='600px'>`;
     } else if (STORE.score < 3) {
-      resultMessage = `You've been benched for earning only ${STORE.score}/${STORE.allQuestions
-        .length} points this game!
+      resultMessage = `You've been benched for earning only <span class="badScore">${STORE.score}</span>/${STORE
+        .allQuestions.length} points this game!
       <br></br>  
       <img src='imgs/defeat_colts.jpg' alt='a football player sits alone on the field' class='victory' width='600px'>`;
     }
     console.log(`${resultMessage}`);
 
     $('.results-content').html(
-      `<div class="results">
-        <form id="js-restart-quiz">      
+      `    
             <div class="results-msg">
-              <legend>${resultMessage}</legend>           
+              <h4>${resultMessage}</h4>           
             </div>
+
             <div class="restart-button">             
               <button type="submit" id="restart"> Restart Quiz </button>    
             </div>
-        </form>
-       </div>`
+        `
     );
-    $('quiz').on('submit', (e) => {
+    $('#quiz').on('submit', (e) => {
       e.preventDefault();
+      $('quiz').off('submit');
+      console.log('WHAT UP');
       restartQuiz();
     });
+  }
+
+  // reset score and question number counters when user wants to replay the quiz
+  function resetStats() {
+    // set both STORE.score and STORE.currentQuestion back to original values
+    // reset both score and question number counters in DOM
+
+    STORE.score = 0;
+    STORE.currentQuestion = 1;
+    $('.score').text(`Score: ${STORE.score}`);
+    $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
   }
 
   // gives the user the chance to take the quiz again from the beginning, once they have completed the quiz
   function restartQuiz() {
     // clicking restart button resets score and currentQuestion counters
-    // re-renders quiz from the beginning
-    console.log('restart 1 of');
+    // re-renders quiz from the first question
 
-    $('#quiz').on('submit', (e) => {
-      e.preventDefault();
+    console.log('restartQuiz is working');
 
-      location.reload(true);
-    });
+    resetStats();
 
-    console.log('restart 2 of');
+    $('.results-content').empty();
+    $('.question-content').html(renderQuestion());
   }
-
   beginQuiz();
 }
 console.log('first line of js');
