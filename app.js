@@ -51,6 +51,7 @@ function main() {
       if (j === 0) {
         listElements += `
         <li>
+          
           <input type="radio" name="answers" value="${answerOption}" checked>
           <span class="answers">${answerOption}</span>
         </li>`;
@@ -67,7 +68,7 @@ function main() {
       <ul><h2>${STORE.allQuestions[i].question}</h2>
         ${listElements}
       </ul> 
-      <button type="submit" class="submitAns">submit answer</button>
+      <button type="submit" class="submitAns">Submit answer</button>
     `);
 
     answerFeedback(i);
@@ -119,6 +120,7 @@ function main() {
 
         console.log('final question');
       }
+
       $('#quiz').on('submit', (e) => {
         e.preventDefault();
         $('#quiz').off('submit');
@@ -138,7 +140,7 @@ function main() {
       updateQuestionNum(STORE.currentQuestion + 1);
       renderQuestion();
     } else {
-      $('.question-content').remove();
+      $('.question-content').empty();
       $('.results-content').add(results());
     }
 
@@ -150,7 +152,7 @@ function main() {
     // display score and currentQuestion counters
     // display final message based on score?
     // display restart button
-    $('.question-content').remove();
+    // $('.question-content').empty();
     let resultMessage = '';
     if (STORE.score >= 5) {
       resultMessage = `Great job, sport! You earned <span class="goodScore">${STORE.score}</span>/${STORE
@@ -171,37 +173,42 @@ function main() {
     console.log(`${resultMessage}`);
 
     $('.results-content').html(
-      `<div class="results">
-        <form id="js-restart-quiz">      
+      `    
             <div class="results-msg">
               <h4>${resultMessage}</h4>           
             </div>
+
             <div class="restart-button">             
               <button type="submit" id="restart"> Restart Quiz </button>    
             </div>
-        </form>
-       </div>`
+        `
     );
-    $('quiz').on('submit', (e) => {
+    $('#quiz').on('submit', (e) => {
       e.preventDefault();
-      $('#quiz').off('submit');
-
+      $('quiz').off('submit');
+      console.log('WHAT UP');
       restartQuiz();
     });
   }
 
-  // gives the user the chance to take the quiz again from the beginning, once they have completed the quiz
-  function restartQuiz() {
-    // clicking restart button resets score and currentQuestion counters
-    // re-renders quiz from the beginning
-    console.log('restart 1 of');
-
-    SCORE.currentQuestion = 0;
-    SCORE.score = 0;
-
-    console.log('restart 2 of');
+  function resetStats() {
+    STORE.score = 0;
+    STORE.currentQuestion = 1;
+    $('.score').text(`Score: ${STORE.score}`);
+    $('.question-number').text(`Question: ${STORE.currentQuestion}/${STORE.allQuestions.length}`);
   }
 
+  // gives the user the chance to take the quiz again from the beginning, once they have completed the quiz
+  function restartQuiz() {
+    // // clicking restart button resets score and currentQuestion counters
+    // // re-renders quiz from the beginning
+    //   console.log('restart 1 of');
+
+    resetStats();
+
+    $('.results-content').empty();
+    $('.question-content').html(renderQuestion());
+  }
   beginQuiz();
 }
 console.log('first line of js');
