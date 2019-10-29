@@ -167,7 +167,6 @@ button:hover::after {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
 	margin-top: -100px;
-	
 }
 
 /* Begin quiz questions */
@@ -175,18 +174,21 @@ button:hover::after {
 /* Begin quiz answers */
 
 .answers {
-	text-align: left;
 	font-family: 'Raleway', sans-serif;
 	color: cyan;
 }
 
-#quiz{
+#quiz {
 	margin-top: 120px;
 }
 
+.question-content ul {
+	margin-left: -15px;
+}
+
 .question-content li {
-	text-align: center;
-	border: 20px solid transparent;
+	margin: 20px;
+	text-align: justify;
 }
 
 .submission-response {
@@ -257,6 +259,10 @@ button:hover::after {
 		color: darkblue;
 		height: 500px;
 		width: 500px;
+	}
+
+	.question-content ul {
+		margin-left: 10px;
 	}
 
 	.start-content {
@@ -336,4 +342,3 @@ button:hover::after {
 		margin-top: 200px;
 	}
 }
-

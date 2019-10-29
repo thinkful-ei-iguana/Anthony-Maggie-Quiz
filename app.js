@@ -74,21 +74,21 @@ function main() {
       if (j === 0) {
         listElements += `
         <li>
-          
-          <input type='radio' id='checked-answer' name='answers' value='${answerOption}' checked>
-          <label for='checked-answer' class='answers'>${answerOption}</label>
+          <input type='radio' id='option-${answerOption}' name='answers' value='${answerOption}' checked>
+          <label for='option-${answerOption}' class='answers'>${answerOption}</label>
         </li>`;
       } else {
         listElements += `
         <li>
-          <input type='radio' id='unchecked-answer' name='answers' value='${answerOption}'>
-           <label for='unchecked-answer' class='answers'>${answerOption}</label>
+          <input type='radio' id='option-${answerOption}' name='answers' value='${answerOption}'>
+           <label for='option-${answerOption}' class='answers'>${answerOption}</label>
         </li>`;
       }
     }
 
     $('.question-content').html(` 
-      <ul><h2>${STORE.allQuestions[i].question}</h2>
+    <h2>${STORE.allQuestions[i].question}</h2>
+      <ul>
         ${listElements}
       </ul> 
       <button type="submit" class="submitAns">Submit answer</button>
