@@ -1,20 +1,16 @@
+
 /* Begin Imports */
 
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-
 /* End Imports */
-
 ::-webkit-scrollbar {
 	width: 0 !important;
 }
-
 * {
 	text-align: center;
 }
-
 /* Begin body */
-
 body {
 	background: url('./imgs/fancy-pants.jpg');
 	min-height: 100vh;
@@ -25,62 +21,47 @@ body {
 	font-size: calc(10px + 2vmin);
 	color: white;
 }
-
 body h1 {
 	color: #fff;
 	font-family: 'Indie Flower', cursive;
 	font-size: calc(25px + 2vmin);
 }
-
 /* End body */
-
 /* Begin main */
-
 main {
 	background: #1a1921;
 	border: 1px solid #fff;
 	border-radius: 20px;
 }
-
 /* End main */
-
 /* Begin quiz data */
-
 .quizData {
 	margin-bottom: 20px;
 }
-
 .score {
 	display: inline;
 	font-family: 'Raleway', sans-serif;
 }
-
 .question-number {
 	font-family: 'Raleway', sans-serif;
 	text-align: right;
 	display: inline;
-	margin-left: 50px;
+	margin-left: 180px;
 }
-
 /* End quiz data */
-
 /* Begin quiz */
-
 img {
 	height: 75px;
 	width: 120px;
 }
-
 .victory {
 	height: 100px;
 	width: 150px;
 	margin-bottom: 20px;
 }
-
 .start-content {
 	margin-top: 130px;
 }
-
 #quiz {
 	text-align: center;
 	padding: 20px 20px;
@@ -89,28 +70,22 @@ img {
 	width: 200px;
 	display: inline-block;
 }
-
 #quiz fieldset {
 	border: 0;
 	padding: 0;
 }
-
 .heading {
 	color: darkblue;
 	font-family: 'Indie Flower', cursive;
 	border: 0;
 	padding-bottom: 50px;
 }
-
 ul {
 	list-style-type: none;
 	padding: 0;
 }
-
 /* End quiz */
-
 /* Begin quiz buttons */
-
 .start {
 	background: transparent;
 	font-size: calc(15px + 2vmin);
@@ -121,11 +96,9 @@ ul {
 	padding: 0;
 	position: relative;
 }
-
 .start:hover {
 	transition: all 0.5s ease-out;
 }
-
 button {
 	border: 0;
 	padding: 0;
@@ -136,12 +109,10 @@ button {
 	font-family: 'Indie Flower', cursive;
 	font-size: calc(10px + 2vmin);
 }
-
 button {
 	text-decoration: none;
 	margin-bottom: 20px;
 }
-
 button::after {
 	content: '';
 	display: block;
@@ -150,16 +121,12 @@ button::after {
 	background: #fff;
 	transition: width .3s;
 }
-
 button:hover::after {
 	width: 100%;
 	transition: width .3s;
 }
-
 /* End quiz buttons */
-
 /* Begin quiz questions */
-
 .question-content h2 {
 	margin-bottom: 50px;
 	font-size: calc(10px + 2vmin);
@@ -167,35 +134,31 @@ button:hover::after {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
 	margin-top: -100px;
+
 }
 
 /* Begin quiz questions */
-
 /* Begin quiz answers */
-
 .answers {
+	text-align: left;
 	font-family: 'Raleway', sans-serif;
 	color: cyan;
 }
 
-#quiz {
+#quiz{
 	margin-top: 120px;
 }
 
-.question-content ul {
-	margin-left: -15px;
-}
-
 .question-content li {
-	margin: 20px;
-	text-align: justify;
+	text-align: initial;
+	text-align: center;
+	border: 20px solid transparent;
 }
 
 .submission-response {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
 }
-
 .submission-response h4 {
 	color: #fff;
 }
@@ -206,10 +169,6 @@ button:hover::after {
 	padding: 20px;
 }
 
-.submitAns {
-	margin-top: 50px;
-}
-
 .submission-response .false {
 	color: red;
 	margin-top: -50px;
@@ -218,7 +177,6 @@ button:hover::after {
 .correctAns {
 	color: cyan;
 }
-
 .results-msg h4 {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
@@ -229,30 +187,24 @@ button:hover::after {
 .results-msg .goodScore {
 	color: green;
 }
-
 .results-msg .ehhScore {
 	color: yellow;
 }
-
 .results-msg .badScore {
 	color: red;
 }
-
 /* End quiz anwsers */
-
 /* Begin tablet */
 @media only screen and (min-width: 768px) {
 	img {
 		height: 275px;
 		width: 225px;
 	}
-
 	.victory {
 		height: 250px;
 		width: 400px;
 		margin-bottom: 20px;
 	}
-
 	#quiz {
 		text-align: center;
 		padding: 20px 20px;
@@ -260,24 +212,11 @@ button:hover::after {
 		height: 500px;
 		width: 500px;
 	}
-
-	.question-content ul {
-		margin-left: 10px;
-	}
-
 	.start-content {
 		margin-top: 200px;
 	}
-
-	.question-number {
-		font-family: 'Raleway', sans-serif;
-		text-align: right;
-		display: inline;
-		margin-left: 90px;
-	}
 }
 /* End tablet */
-
 /* Begin Desktop */
 @media only screen and (min-width: 1200px) {
 	body {
@@ -290,22 +229,18 @@ button:hover::after {
 		font-size: calc(10px + 2vmin);
 		color: white;
 	}
-
 	body h1 {
 		color: #fff;
 		font-family: 'Indie Flower', cursive;
 		font-size: calc(25px + 2vmin);
 	}
-
 	main {
 	}
-
 	.heading {
 		font-family: 'Indie Flower', cursive;
 		border: 0;
 		padding-bottom: 50px;
 	}
-
 	.start {
 		background: transparent;
 		border: 0;
@@ -314,31 +249,25 @@ button:hover::after {
 		transition: all 0.5s ease-out;
 		font-family: 'Indie Flower', cursive;
 	}
-
 	.question-content h2 {
 		margin-bottom: 50px;
 		font-size: calc(10px + 2vmin);
 	}
-
 	#quiz {
 		text-align: center;
 		padding: 20px 20px;
 		height: 600px;
 		width: 700px;
 	}
-
 	img {
 		height: 300px;
 		width: 300px;
 	}
-
 	.victory {
 		height: 300px;
 		width: 500px;
 		margin-bottom: 20px;
 	}
-
 	.start-content {
 		margin-top: 200px;
 	}
-}
