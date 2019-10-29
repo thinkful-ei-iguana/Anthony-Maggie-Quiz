@@ -59,7 +59,7 @@ main {
 	font-family: 'Raleway', sans-serif;
 	text-align: right;
 	display: inline;
-	margin-left: 180px;
+	margin-left: 50px;
 }
 
 /* End quiz data */
@@ -246,6 +246,13 @@ button:hover::after {
 
 	.start-content {
 		margin-top: 200px;
+	}
+
+	.question-number {
+		font-family: 'Raleway', sans-serif;
+		text-align: right;
+		display: inline;
+		margin-left: 90px;
 	}
 }
 /* End tablet */
